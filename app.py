@@ -29,7 +29,8 @@ def reverse_string():
     data = request.get_json()
     text = data.get('text', "")
     return jsonify({"result": text[::-1]})
-
+# Add this intentionally bad line
+def     badly_formatted_function(     ):     return     "This will fail linting"
 
 if __name__ == '__main__':
     app.run()
