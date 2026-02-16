@@ -10,7 +10,10 @@ def client():
 def test_health(client):
     res = client.get('/health')
     assert res.status_code == 200
-    assert res.get_json() == {"status": "UP"}
+    data = res.get_json()
+    assert data["status"] == "UP"
+    assert "service" in data
+    assert "version" in data
 
 
 def test_sum(client):
@@ -58,3 +61,6 @@ def test_reverse_string_invalid_type(client):
     res = client.post('/reverse-string', json={"text": 12345})
     assert res.status_code == 400
     assert "error" in res.get_json()
+
+
+
