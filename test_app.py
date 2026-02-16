@@ -52,3 +52,9 @@ def test_sum_invalid_input(client):
     res = client.post('/sum', json={"a": "not a number", "b": 10})
     assert res.status_code == 400
     assert "error" in res.get_json()
+
+
+def test_reverse_string_invalid_type(client):
+    res = client.post('/reverse-string', json={"text": 12345})
+    assert res.status_code == 400
+    assert "error" in res.get_json()
