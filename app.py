@@ -29,6 +29,8 @@ def reverse_string():
     data = request.get_json()
     text = data.get('text', "")
     return jsonify({"result": text[::-1]})
+# Add this BEFORE the if __name__ line - intentionally bad formatting
+def     badly_formatted(  x,  y   ):    return   x+y
 
 
 if __name__ == '__main__':
