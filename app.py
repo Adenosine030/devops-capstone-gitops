@@ -5,7 +5,11 @@ app = Flask(__name__)
 
 @app.route('/health', methods=['GET'])
 def health():
-    return jsonify({"status": "UP"}), 200
+    return jsonify({
+        "status": "UP",
+        "service": "DevOps Capstone API",
+        "version": "1.0.0"
+    }), 200
 
 
 @app.route('/sum', methods=['POST'])
@@ -27,18 +31,13 @@ def get_sum():
 @app.route('/reverse-string', methods=['POST'])
 def reverse_string():
     data = request.get_json()
-    text = data.get('text', "")
-    return jsonify({"result": text[::-1]})
-@app.route('/reverse-string', methods=['POST'])
-def reverse_string():
-    data = request.get_json()
     if data is None:
         return jsonify({"error": "Invalid JSON"}), 400
-    
+
     text = data.get('text', "")
     if not isinstance(text, str):
         return jsonify({"error": "Text must be a string"}), 400
-    
+
     return jsonify({"result": text[::-1]})
 
 
